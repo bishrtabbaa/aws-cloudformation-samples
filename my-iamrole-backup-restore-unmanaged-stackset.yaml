@@ -1,0 +1,58 @@
+AWSTemplateFormatVersion:           "2010-09-09"
+
+Description:
+  This template creates the IAM role required for cross-account backup and cross-Region copy using AWS Backup.
+
+Resources:
+    
+  mycrossaccountbackuprole:
+    Type:                           'AWS::IAM::Role'
+    Properties:
+      AssumeRolePolicyDocument:
+        Version:                    "2012-10-17"
+        Statement:
+          - Effect:                 Allow
+            Principal:
+              Service:
+                - backup.amazonaws.com
+            Action:
+              - 'sts:AssumeRole'
+      Policies:
+        - PolicyName: S3BucketBackupPermissions
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:GetInventoryConfiguration"
+                  - "s3:PutInventoryConfiguration"
+                  - "s3:ListBucketVersions"
+                  - "s3:ListBucket"
+                  - "s3:GetBucketVersioning"
+                  - "s3:GetBucketNotification"
+                  - "s3:PutBucketNotification"
+                  - "s3:GetBucketLocation"
+                  - "s3:GetBucketTagging"
+                Resource: '*'
+        - PolicyName: S3ObjectBackupPermissions
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action:
+                  - "s3:GetObjectAcl"
+                  - "s3:GetObject"
+                  - "s3:GetObjectVersionTagging"
+                  - "s3:GetObjectVersionAcl"
+                  - "s3:GetObjectTagging"
+                  - "s3:GetObjectVersion"
+                Resource: '*'
+        - PolicyName: S3GlobalPermissions
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:ListAllMyBuckets
+                Resource: '*'
+      RoleName: CrossAccountBackupRole

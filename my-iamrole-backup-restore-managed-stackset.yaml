@@ -1,0 +1,27 @@
+AWSTemplateFormatVersion:           "2010-09-09"
+
+Description:
+  This template creates the IAM role required for cross-account backup and cross-Region copy using AWS Backup.
+
+Resources:
+    
+  mycrossaccountbackuprole:
+    Type:                           'AWS::IAM::Role'
+    Properties:
+      RoleName:                     CrossAccountBackupRole
+      Description:                  Allows AWS Backup to call AWS services on your behalf.
+      AssumeRolePolicyDocument:
+        Version:                    "2012-10-17"
+        Statement:
+          - Effect:                 Allow
+            Principal:
+              Service:
+                - backup.amazonaws.com
+            Action:
+              - 'sts:AssumeRole'
+      Path:                         /
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSBackupServiceRolePolicyForBackup
+        - arn:aws:iam::aws:policy/service-role/AWSBackupServiceRolePolicyForRestores
+        - arn:aws:iam::aws:policy/AWSBackupServiceRolePolicyForS3Backup
+        - arn:aws:iam::aws:policy/AWSBackupServiceRolePolicyForS3Restore
