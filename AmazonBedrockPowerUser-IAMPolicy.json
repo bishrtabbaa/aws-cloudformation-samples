@@ -1,0 +1,98 @@
+{
+  "Version" : "2012-10-17",
+  "Statement" : [
+    {
+      "Sid" : "AmazonBedrockReadOnly",
+      "Effect" : "Allow",
+      "Action" : [
+        "bedrock:GetAgent",
+        "bedrock:GetAgentActionGroup",
+        "bedrock:GetAgentAlias",
+        "bedrock:GetAgentKnowledgeBase",
+        "bedrock:GetAgentVersion",
+        "bedrock:GetCustomModel",
+        "bedrock:GetDataSource",
+        "bedrock:GetFoundationModel",        
+        "bedrock:GetFoundationModelAvailability",        
+        "bedrock:GetKnowledgeBase",
+        "bedrock:GetModelCustomizationJob",
+        "bedrock:GetModelEvaluationJob",
+        "bedrock:GetModelInvocationLoggingConfiguration",
+        "bedrock:GetProvisionedModelThroughput",
+        "bedrock:ListAgentActionGroups",
+        "bedrock:ListAgentAliases",
+        "bedrock:ListAgentKnowledgeBases",
+        "bedrock:ListAgentVersions",
+        "bedrock:ListAgents",
+        "bedrock:ListCustomModels",
+        "bedrock:ListDataSources",
+        "bedrock:ListFoundationModels",
+        "bedrock:ListGuardrails",
+        "bedrock:ListIngestionJobs",
+        "bedrock:ListKnowledgeBases",
+        "bedrock:ListModelCustomizationJobs",
+        "bedrock:ListModelEvaluationJobs",
+        "bedrock:ListModelInvocationJobs",
+        "bedrock:ListProvisionedModelThroughputs",
+        "bedrock:ListTagsForResource"
+      ],
+      "Resource" : "*"
+    },
+    {
+      "Sid" : "AmazonBedrockPowerUser",
+      "Effect" : "Allow",
+      "Action" : [
+        "bedrock:CreateAgent",
+        "bedrock:CreateAgentActionGroup",
+        "bedrock:CreateAgentAlias",
+        "bedrock:CreateDataSource",
+        "bedrock:CreateGuardrail",
+        "bedrock:CreateGuardrailVersion",
+        "bedrock:CreateKnowledgeBase",
+        "bedrock:CreateModelCustomizationJob",
+        "bedrock:CreateModelEvaluationJob",
+        "bedrock:CreateModelInvocationJob",
+        "bedrock:DeleteAgent",
+        "bedrock:DeleteAgentActionGroup",
+        "bedrock:DeleteAgentAlias",
+        "bedrock:DeleteAgentVersion",
+        "bedrock:DeleteCustomModel",
+        "bedrock:DeleteDataSource",
+        "bedrock:DeleteGuardrail",
+        "bedrock:DeleteKnowledgeBase",
+        "bedrock:InvokeAgent",
+        "bedrock:InvokeModel",
+        "bedrock:InvokeModelWithResponseStream",
+        "bedrock:Retrieve",
+        "bedrock:RetrieveAndGenerate",
+        "bedrock:StartIngestionJob",
+        "bedrock:StopModelCustomizationJob",
+        "bedrock:StopModelInvocationJob",
+        "bedrock:UpdateAgent",
+        "bedrock:UpdateAgentActionGroup",
+        "bedrock:UpdateAgentAlias",
+        "bedrock:UpdateAgentKnowledgeBase",
+        "bedrock:UpdateDataSource",
+        "bedrock:UpdateGuardrail",
+        "bedrock:UpdateKnowledgeBase"
+       ],
+      "Resource" : "*"
+    }
+      ,
+      {
+          "Sid": "AmazonBedrockPassRoleToService",
+          "Effect": "Allow",
+          "Action": [
+              "iam:PassRole"
+          ],
+          "Resource": "arn:aws:iam::*:role/*AmazonBedrock*",
+          "Condition": {
+              "StringEquals": {
+                  "iam:PassedToService": [
+                      "bedrock.amazonaws.com"
+                  ]
+              }
+          }
+      }
+  ]
+}
