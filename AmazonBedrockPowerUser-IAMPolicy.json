@@ -92,18 +92,6 @@
                   ]
               }
           }
-      },
-      {
-           "Sid": "AmazonBedrockTrust",
-           "Effect": "Allow",
-           "Principal": { "Service":"bedrock.amazonaws.com"},
-           "Action" : "sts:AssumeRole"
-      },
-      {
-           "Sid": "AmazonSagemakerTrust",
-           "Effect": "Allow",
-           "Principal": { "Service":"sagemaker.amazonaws.com"},
-           "Action" : "sts:AssumeRole"
       }
   ]
 }
