@@ -78,6 +78,18 @@
        ],
       "Resource" : "*"
     },
+    {
+      "Sid" : "AmazonBedrockCustomModelJobPolicy",
+      "Effect" : "Allow",
+      "Action" : [
+        "iam:ListRoles",
+        "ec2:DescribeVpcs",
+        "ec2:DescribeSubnets",
+        "ec2:DescribeSecurityGroups"
+      ],
+      "Resource" : "*"
+    }
+    ,
      {
           "Sid": "AmazonBedrockPassRoleToService",
           "Effect": "Allow",
